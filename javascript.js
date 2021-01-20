@@ -20,33 +20,129 @@
 //3     | 2     | vitoria
 //3     | 3     | empate
 
+var maojogador = document.querySelectorAll('.jog')
+var maomaquina = document.querySelectorAll('.maq')
+var res = document.getElementById('res')
+var jog
+var maq
+
+var int = setTimeout(function () {
+    location.reload()
+}, 2000)
 
 
-var jog = 3
-var maq = 3
+function jogmaq() {
+    maq = Math.floor(Math.random() * 3) + 1
+}
 
-if(jog == 1){
-    if(maq == 1){
-        console.log('empate')
-    }else if(maq == 2){
-        console.log('derrota')
-    }else{
-        console.log('vitoria')
+function pedra() {
+    jog = 1
+    ganhador()
+}
+
+function papel() {
+    jog = 2
+    ganhador()
+}
+
+function tesoura() {
+    jog = 3
+    ganhador()
+}
+
+
+function ganhador() {
+    int
+    jogmaq()
+
+    if (jog == 1) {
+        if (maq == 1) {
+            maojogador[1].setAttribute('hidden', '')
+            maojogador[2].setAttribute('hidden', '')
+
+            maomaquina[0].setAttribute('hidden', '')
+            maomaquina[1].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>EMPATOU</STRong>'
+            res.style.color = '#2196F3'
+        } else if (maq == 2) {
+            maojogador[1].setAttribute('hidden', '')
+            maojogador[2].setAttribute('hidden', '')
+
+            maomaquina[0].setAttribute('hidden', '')
+            maomaquina[2].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+            res.style.color = '#f44336'
+        } else {
+            maojogador[1].setAttribute('hidden', '')
+            maojogador[2].setAttribute('hidden', '')
+
+            maomaquina[2].setAttribute('hidden', '')
+            maomaquina[1].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+            res.style.color = '#4CAF50'
+
+        }
+    } else if (jog == 2) {
+        if (maq == 1) {
+            maojogador[0].setAttribute('hidden', '')
+            maojogador[2].setAttribute('hidden', '')
+
+            maomaquina[0].setAttribute('hidden', '')
+            maomaquina[1].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+            res.style.color = '#4CAF50'
+        } else if (maq == 2) {
+            maojogador[0].setAttribute('hidden', '')
+            maojogador[2].setAttribute('hidden', '')
+
+            maomaquina[0].setAttribute('hidden', '')
+            maomaquina[2].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>EMPATOU</STRong>'
+            res.style.color = '#2196F3'
+        } else {
+            maojogador[1].setAttribute('hidden', '')
+            maojogador[2].setAttribute('hidden', '')
+
+            maomaquina[0].setAttribute('hidden', '')
+            maomaquina[2].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+            res.style.color = '#f44336'
+        }
+    } else {
+        if (maq == 1) {
+            maojogador[1].setAttribute('hidden', '')
+            maojogador[0].setAttribute('hidden', '')
+
+            maomaquina[0].setAttribute('hidden', '')
+            maomaquina[1].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+            res.style.color = '#f44336'
+        } else if (maq == 2) {
+            maojogador[0].setAttribute('hidden', '')
+            maojogador[1].setAttribute('hidden', '')
+
+            maomaquina[2].setAttribute('hidden', '')
+            maomaquina[0].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+            res.style.color = '#4CAF50'
+        } else {
+            maojogador[1].setAttribute('hidden', '')
+            maojogador[0].setAttribute('hidden', '')
+
+            maomaquina[2].setAttribute('hidden', '')
+            maomaquina[1].setAttribute('hidden', '')
+
+            res.innerHTML = '<STRong>EMPATOU</STRong>'
+            res.style.color = '#2196F3'
+        }
     }
-}else if(jog == 2){
-    if(maq == 1){
-        console.log('vitoria')
-    }else if(maq == 2){
-        console.log('empate')
-    }else{
-        console.log('derrota')
-    }
-}else{
-    if(maq == 1){
-        console.log('derrota')
-    }else if(maq == 2){
-        console.log('vitoria')
-    }else{
-        console.log('empate')
-    }
+
 }
