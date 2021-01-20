@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo pedra papel tesoura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Jogo do pedra, papel e tesoura</h1>
+        <h2>Escolha uma mão</h2>
+    </header>
+    <section>
+
+        <div id="jogo">
+            <div id="jogador1">
+                <h3>Jogador 1</h3>
+                <div id="mj">
+                    <img src="imagens/pedra.png" class="jog" alt="emoji mão fechada" onclick="pedra()">
+                    <img src="imagens/papel.png" class="jog" alt="emoji mão aberta" onclick="papel()">
+                    <img src="imagens/tesoura.png" class="jog" alt="emoji mão com dois dedos levantados"
+                        onclick="tesoura()">
+                </div>
+            </div>
+            <div id="res"></div>
+            <div id="jogador2">
+                <div id="mq">
+
+                    <img src="imagens/tesoura.png" class="maq" alt="emoji mão com dois dedos levantados">
+                    <img src="imagens/papel.png" class="maq" alt="emoji mão aberta">
+                    <img src="imagens/pedra.png" class="maq" alt="emoji mão fechada">
+                </div>
+                <h3>Jogador 2</h3>
+            </div>
+        </div>
+    </section>
+    <script src="javascript.js"></script>
+
+</body>
+
+</html>
