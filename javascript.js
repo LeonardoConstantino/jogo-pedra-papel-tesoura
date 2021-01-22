@@ -23,12 +23,14 @@
 var maojogador = document.querySelectorAll('.jog')
 var maomaquina = document.querySelectorAll('.maq')
 var res = document.getElementById('res')
+var njogo = document.getElementById('njogo')
 var jog
 var maq
 
-var int = setTimeout(function () {
+function zerar() {
+    // tjogo.innerHTML = `${njogo}`
     location.reload()
-}, 2000)
+}
 
 
 function jogmaq() {
@@ -51,8 +53,12 @@ function tesoura() {
 }
 
 
+function reset() {
+    setTimeout(zerar, 1500)
+}
+
 function ganhador() {
-    int
+    reset()
     jogmaq()
 
     if (jog == 1) {

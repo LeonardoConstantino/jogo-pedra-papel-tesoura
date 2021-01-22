@@ -23,6 +23,11 @@ img {
     padding: auto;
     margin: 10px;
 }
+#mj img:hover{
+    width: 150px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.76);
+}
+
 
 div {
     text-align: center;
@@ -42,7 +47,7 @@ div {
 #mj #mq {
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 
 #jogador2 {
