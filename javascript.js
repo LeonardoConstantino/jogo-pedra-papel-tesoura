@@ -24,12 +24,31 @@ var maojogador = document.querySelectorAll('.jog')
 var maomaquina = document.querySelectorAll('.maq')
 var res = document.getElementById('res')
 var njogo = document.getElementById('njogo')
+var mj = document.getElementById('mj')
+var melhorD3Jogador = document.getElementById('jml3')
+var placarGeralJogador = document.getElementById('jplag')
+var melhorD3Maquina = document.getElementById('mml3')
+var placarGeralMaquina = document.getElementById('mplag')
+var resMelhorDe3Jogador = document.querySelectorAll('#jml3 .strong').length
+var resMelhorDe3Maquina = document.querySelectorAll('#mml3 .strong').length
+var resPlacarGeralJogador = 0
+var resPlacarGeralMaquina = 0
 var jog
-var maq
+var maq = 1
 
 function zerar() {
     // tjogo.innerHTML = `${njogo}`
-    location.reload()
+    // location.reload()
+
+    mj.setAttribute('class', 'clik')
+    maojogador[0].style.display = 'inline'
+    maojogador[1].style.display = 'inline'
+    maojogador[2].style.display = 'inline'
+    res.innerHTML = ''
+    maomaquina[0].style.display = 'inline'
+    maomaquina[1].style.display = 'inline'
+    maomaquina[2].style.display = 'inline'
+    res.style.visibility = 'hidden'
 }
 
 
@@ -57,96 +76,165 @@ function reset() {
     setTimeout(zerar, 1500)
 }
 
+function atualizarPlacar() {
+
+    if (resMelhorDe3Jogador == 2) {
+        resPlacarGeralJogador++
+        placarGeralJogador.innerHTML = `${resPlacarGeralJogador}`
+        melhorD3Jogador.innerHTML = ''
+        melhorD3Maquina.innerHTML = ''
+        resMelhorDe3Jogador = 0
+        resMelhorDe3Maquina = 0
+    } else {
+        resMelhorDe3Jogador++
+        var m3 = document.createElement("STRong")
+        m3.innerHTML = "I"
+        melhorD3Jogador.appendChild(m3)
+    }
+
+}
+
+function atualizarPlacar1() {
+
+    if (resMelhorDe3Maquina == 2) {
+        resPlacarGeralMaquina++
+        placarGeralMaquina.innerHTML = `${resPlacarGeralMaquina}`
+        melhorD3Maquina.innerHTML = ''
+        melhorD3Jogador.innerHTML = ''
+        resMelhorDe3Maquina = 0
+        resMelhorDe3Jogador = 0
+    } else {
+        resMelhorDe3Maquina++
+        var m3 = document.createElement("STRong")
+        m3.innerHTML = "I"
+        melhorD3Maquina.appendChild(m3)
+    }
+
+}
+
 function ganhador() {
     reset()
     jogmaq()
 
     if (jog == 1) {
         if (maq == 1) {
-            maojogador[1].setAttribute('hidden', '')
-            maojogador[2].setAttribute('hidden', '')
+            mj.setAttribute('class', 'naoclik')
+            maojogador[1].style.display = 'none'
+            maojogador[2].style.display = 'none'
 
-            maomaquina[0].setAttribute('hidden', '')
-            maomaquina[1].setAttribute('hidden', '')
+            maomaquina[0].style.display = 'none'
+            maomaquina[1].style.display = 'none'
 
             res.innerHTML = '<STRong>EMPATOU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#2196F3'
         } else if (maq == 2) {
-            maojogador[1].setAttribute('hidden', '')
-            maojogador[2].setAttribute('hidden', '')
+            mj.setAttribute('class', 'naoclik')
+            maojogador[1].style.display = 'none'
+            maojogador[2].style.display = 'none'
 
-            maomaquina[0].setAttribute('hidden', '')
-            maomaquina[2].setAttribute('hidden', '')
+            maomaquina[0].style.display = 'none'
+            maomaquina[2].style.display = 'none'
 
             res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#f44336'
-        } else {
-            maojogador[1].setAttribute('hidden', '')
-            maojogador[2].setAttribute('hidden', '')
 
-            maomaquina[2].setAttribute('hidden', '')
-            maomaquina[1].setAttribute('hidden', '')
+            atualizarPlacar1()
+
+        } else {
+            mj.setAttribute('class', 'naoclik')
+            maojogador[1].style.display = 'none'
+            maojogador[2].style.display = 'none'
+
+            maomaquina[2].style.display = 'none'
+            maomaquina[1].style.display = 'none'
 
             res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#4CAF50'
 
+            atualizarPlacar()
         }
     } else if (jog == 2) {
         if (maq == 1) {
-            maojogador[0].setAttribute('hidden', '')
-            maojogador[2].setAttribute('hidden', '')
+            mj.setAttribute('class', 'naoclik')
+            maojogador[0].style.display = 'none'
+            maojogador[2].style.display = 'none'
 
-            maomaquina[0].setAttribute('hidden', '')
-            maomaquina[1].setAttribute('hidden', '')
+            maomaquina[0].style.display = 'none'
+            maomaquina[1].style.display = 'none'
 
             res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#4CAF50'
-        } else if (maq == 2) {
-            maojogador[0].setAttribute('hidden', '')
-            maojogador[2].setAttribute('hidden', '')
 
-            maomaquina[0].setAttribute('hidden', '')
-            maomaquina[2].setAttribute('hidden', '')
+            atualizarPlacar()
+        } else if (maq == 2) {
+            mj.setAttribute('class', 'naoclik')
+            maojogador[0].style.display = 'none'
+            maojogador[2].style.display = 'none'
+
+            maomaquina[0].style.display = 'none'
+            maomaquina[2].style.display = 'none'
 
             res.innerHTML = '<STRong>EMPATOU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#2196F3'
         } else {
-            maojogador[1].setAttribute('hidden', '')
-            maojogador[2].setAttribute('hidden', '')
+            mj.setAttribute('class', 'naoclik')
+            maojogador[1].style.display = 'none'
+            maojogador[2].style.display = 'none'
 
-            maomaquina[0].setAttribute('hidden', '')
-            maomaquina[2].setAttribute('hidden', '')
+            maomaquina[0].style.display = 'none'
+            maomaquina[2].style.display = 'none'
 
             res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#f44336'
+
+            atualizarPlacar1()
+
         }
     } else {
         if (maq == 1) {
-            maojogador[1].setAttribute('hidden', '')
-            maojogador[0].setAttribute('hidden', '')
+            mj.setAttribute('class', 'naoclik')
+            maojogador[1].style.display = 'none'
+            maojogador[0].style.display = 'none'
 
-            maomaquina[0].setAttribute('hidden', '')
-            maomaquina[1].setAttribute('hidden', '')
+            maomaquina[0].style.display = 'none'
+            maomaquina[1].style.display = 'none'
 
             res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#f44336'
-        } else if (maq == 2) {
-            maojogador[0].setAttribute('hidden', '')
-            maojogador[1].setAttribute('hidden', '')
 
-            maomaquina[2].setAttribute('hidden', '')
-            maomaquina[0].setAttribute('hidden', '')
+            atualizarPlacar1()
+
+        } else if (maq == 2) {
+            mj.setAttribute('class', 'naoclik')
+            maojogador[0].style.display = 'none'
+            maojogador[1].style.display = 'none'
+
+            maomaquina[2].style.display = 'none'
+            maomaquina[0].style.display = 'none'
 
             res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#4CAF50'
-        } else {
-            maojogador[1].setAttribute('hidden', '')
-            maojogador[0].setAttribute('hidden', '')
 
-            maomaquina[2].setAttribute('hidden', '')
-            maomaquina[1].setAttribute('hidden', '')
+            atualizarPlacar()
+
+        } else {
+            mj.setAttribute('class', 'naoclik')
+            maojogador[1].style.display = 'none'
+            maojogador[0].style.display = 'none'
+
+            maomaquina[2].style.display = 'none'
+            maomaquina[1].style.display = 'none'
 
             res.innerHTML = '<STRong>EMPATOU</STRong>'
+            res.style.visibility = 'visible'
             res.style.color = '#2196F3'
         }
     }
