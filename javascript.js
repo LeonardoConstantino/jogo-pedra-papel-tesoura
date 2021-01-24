@@ -21,7 +21,13 @@
 //3     | 3     | empate
 
 var maojogador = document.querySelectorAll('.jog')
+var maojogadorpedra = document.querySelectorAll('.jog')[0]
+var maojogadorpapel = document.querySelectorAll('.jog')[1]
+var maojogadortesoura = document.querySelectorAll('.jog')[2]
 var maomaquina = document.querySelectorAll('.maq')
+var maomaquinatesoura = document.querySelectorAll('.maq')[0]
+var maomaquinapapel = document.querySelectorAll('.maq')[1]
+var maomaquinapedra = document.querySelectorAll('.maq')[2]
 var res = document.getElementById('res')
 var njogo = document.getElementById('njogo')
 var mj = document.getElementById('mj')
@@ -34,12 +40,9 @@ var resMelhorDe3Maquina = document.querySelectorAll('#mml3 .strong').length
 var resPlacarGeralJogador = 0
 var resPlacarGeralMaquina = 0
 var jog
-var maq = 1
+var maq
 
 function zerar() {
-    // tjogo.innerHTML = `${njogo}`
-    // location.reload()
-
     mj.setAttribute('class', 'clik')
     maojogador[0].style.display = 'inline'
     maojogador[1].style.display = 'inline'
@@ -77,7 +80,6 @@ function reset() {
 }
 
 function atualizarPlacar() {
-
     if (resMelhorDe3Jogador == 2) {
         resPlacarGeralJogador++
         placarGeralJogador.innerHTML = `${resPlacarGeralJogador}`
@@ -85,17 +87,16 @@ function atualizarPlacar() {
         melhorD3Maquina.innerHTML = ''
         resMelhorDe3Jogador = 0
         resMelhorDe3Maquina = 0
+
     } else {
         resMelhorDe3Jogador++
         var m3 = document.createElement("STRong")
         m3.innerHTML = "I"
         melhorD3Jogador.appendChild(m3)
     }
-
 }
 
 function atualizarPlacar1() {
-
     if (resMelhorDe3Maquina == 2) {
         resPlacarGeralMaquina++
         placarGeralMaquina.innerHTML = `${resPlacarGeralMaquina}`
@@ -103,13 +104,61 @@ function atualizarPlacar1() {
         melhorD3Jogador.innerHTML = ''
         resMelhorDe3Maquina = 0
         resMelhorDe3Jogador = 0
+
     } else {
         resMelhorDe3Maquina++
         var m3 = document.createElement("STRong")
         m3.innerHTML = "I"
         melhorD3Maquina.appendChild(m3)
     }
+}
 
+function stiloganhar() {
+    res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
+    res.style.visibility = 'visible'
+    res.style.color = '#4CAF50'
+}
+
+function stiloempata() {
+    res.innerHTML = '<STRong>EMPATOU</STRong>'
+    res.style.visibility = 'visible'
+    res.style.color = '#2196F3'
+}
+
+function stiloperde() {
+    res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
+    res.style.visibility = 'visible'
+    res.style.color = '#f44336'
+}
+
+function mostrapedrajogador() {
+    maojogadorpapel.style.display = 'none'
+    maojogadortesoura.style.display = 'none'
+}
+
+function mostrapapeljogador() {
+    maojogadorpedra.style.display = 'none'
+    maojogadortesoura.style.display = 'none'
+}
+
+function mostratesourajogador() {
+    maojogadorpapel.style.display = 'none'
+    maojogadorpedra.style.display = 'none'
+}
+
+function mostrarpedramaquina() {
+    maomaquinatesoura.style.display = 'none'
+    maomaquinapapel.style.display = 'none'
+}
+
+function mostrarpapelmaquina() {
+    maomaquinatesoura.style.display = 'none'
+    maomaquinapedra.style.display = 'none'
+}
+
+function mostrartesouramaquina() {
+    maomaquinapedra.style.display = 'none'
+    maomaquinapapel.style.display = 'none'
 }
 
 function ganhador() {
@@ -119,124 +168,67 @@ function ganhador() {
     if (jog == 1) {
         if (maq == 1) {
             mj.setAttribute('class', 'naoclik')
-            maojogador[1].style.display = 'none'
-            maojogador[2].style.display = 'none'
+            mostrapedrajogador()
+            mostrarpedramaquina()
+            stiloempata()
 
-            maomaquina[0].style.display = 'none'
-            maomaquina[1].style.display = 'none'
-
-            res.innerHTML = '<STRong>EMPATOU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#2196F3'
         } else if (maq == 2) {
             mj.setAttribute('class', 'naoclik')
-            maojogador[1].style.display = 'none'
-            maojogador[2].style.display = 'none'
-
-            maomaquina[0].style.display = 'none'
-            maomaquina[2].style.display = 'none'
-
-            res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#f44336'
-
+            mostrapedrajogador()
+            mostrarpapelmaquina()
+            stiloperde()
             atualizarPlacar1()
 
         } else {
             mj.setAttribute('class', 'naoclik')
-            maojogador[1].style.display = 'none'
-            maojogador[2].style.display = 'none'
-
-            maomaquina[2].style.display = 'none'
-            maomaquina[1].style.display = 'none'
-
-            res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#4CAF50'
-
+            mostrapedrajogador()
+            mostrartesouramaquina()
+            stiloganhar()
             atualizarPlacar()
         }
+
     } else if (jog == 2) {
         if (maq == 1) {
             mj.setAttribute('class', 'naoclik')
-            maojogador[0].style.display = 'none'
-            maojogador[2].style.display = 'none'
-
-            maomaquina[0].style.display = 'none'
-            maomaquina[1].style.display = 'none'
-
-            res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#4CAF50'
-
+            mostrapapeljogador()
+            mostrarpedramaquina()
+            stiloganhar()
             atualizarPlacar()
+
         } else if (maq == 2) {
             mj.setAttribute('class', 'naoclik')
-            maojogador[0].style.display = 'none'
-            maojogador[2].style.display = 'none'
+            mostrapapeljogador()
+            mostrarpapelmaquina()
+            stiloempata()
 
-            maomaquina[0].style.display = 'none'
-            maomaquina[2].style.display = 'none'
-
-            res.innerHTML = '<STRong>EMPATOU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#2196F3'
         } else {
             mj.setAttribute('class', 'naoclik')
-            maojogador[1].style.display = 'none'
-            maojogador[2].style.display = 'none'
-
-            maomaquina[0].style.display = 'none'
-            maomaquina[2].style.display = 'none'
-
-            res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#f44336'
-
+            mostrapapeljogador()
+            mostrartesouramaquina()
+            stiloperde()
             atualizarPlacar1()
-
         }
+
     } else {
         if (maq == 1) {
             mj.setAttribute('class', 'naoclik')
-            maojogador[1].style.display = 'none'
-            maojogador[0].style.display = 'none'
-
-            maomaquina[0].style.display = 'none'
-            maomaquina[1].style.display = 'none'
-
-            res.innerHTML = '<STRong>VOCÊ PERDEU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#f44336'
-
+            mostratesourajogador()
+            mostrarpedramaquina()
+            stiloperde()
             atualizarPlacar1()
 
         } else if (maq == 2) {
             mj.setAttribute('class', 'naoclik')
-            maojogador[0].style.display = 'none'
-            maojogador[1].style.display = 'none'
-
-            maomaquina[2].style.display = 'none'
-            maomaquina[0].style.display = 'none'
-
-            res.innerHTML = '<STRong>VOCÊ GANHOU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#4CAF50'
-
+            mostratesourajogador()
+            mostrarpapelmaquina()
+            stiloganhar()
             atualizarPlacar()
 
         } else {
             mj.setAttribute('class', 'naoclik')
-            maojogador[1].style.display = 'none'
-            maojogador[0].style.display = 'none'
-
-            maomaquina[2].style.display = 'none'
-            maomaquina[1].style.display = 'none'
-
-            res.innerHTML = '<STRong>EMPATOU</STRong>'
-            res.style.visibility = 'visible'
-            res.style.color = '#2196F3'
+            mostratesourajogador()
+            mostrartesouramaquina()
+            stiloempata()
         }
     }
-
 }
